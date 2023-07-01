@@ -23,13 +23,18 @@ def clean_dataset(input_path: str, output_path: str):
         'Latest FER (%)',
         'Annualized Return: 1 Year (% p.a.)',
         'Annualized Return: 5 Year (% p.a.)',
-        '10 Year'
+        '10 Year',
+        'Since Launch'
     ]
 
     del new_data['10 Year']
 
     new_data['Annualized Return: 1 Year (% p.a.)'].fillna(
         new_data['Annualized Return: 1 Year (% p.a.)'].mean(),
+        inplace=True
+    )
+    new_data['Since Launch'].fillna(
+        new_data['Since Launch'].mean(),
         inplace=True
     )
     new_data['Annualized Return: 5 Year (% p.a.)'].fillna(
