@@ -15,7 +15,8 @@ class Fund:
             size: float,
             risk_class: int,
             latest_fer: float,
-            annual_returns: dict[str, float]
+            annual_returns: dict[str, float],
+            since_launch: float
     ):
         self.scheme = scheme
         self.name = name
@@ -25,6 +26,7 @@ class Fund:
         self.risk_class = risk_class
         self.latest_fer = latest_fer
         self.annual_returns = annual_returns
+        self.since_launch = since_launch
 
     def to_json(self):
         return {
@@ -35,7 +37,8 @@ class Fund:
             'Size': self.size,
             'Risk Class': self.risk_class,
             'Latest FER': self.latest_fer,
-            'Annual Returns': self.annual_returns
+            'Annual Returns': self.annual_returns,
+            'Since Launch': self.since_launch
         }
 
 
@@ -76,7 +79,8 @@ class Crawler:
                     '1 Year': self.convert_number(cells[10].text, float),
                     '5 Year': self.convert_number(cells[11].text, float),
                     '10 Year': self.convert_number(cells[12].text, float)
-                }
+                },
+                self.convert_number(cells[13].text, float)
             )
             self.funds.append(fund)
 
